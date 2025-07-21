@@ -1,44 +1,37 @@
+import java.util.ArrayList;
+
 public class DishStack {
-    private static final int MAX_SIZE = 10;
-    private Dish[] stackArray;
-    private int top;
+    private ArrayList<Dish> stack;
 
     public DishStack() {
-        stackArray = new Dish[MAX_SIZE];
-        top = -1;
+        stack = new ArrayList<>();
     }
 
     public void push(Dish dish) {
-        if (top >= MAX_SIZE - 1) {
-            System.out.println("Stack is full. Cannot push dish: " + dish.description);
-        } else {
-            stackArray[++top] = dish;
-        }
+        stack.add(dish);
     }
 
     public Dish pop() {
-        if (top < 0) {
+        if (stack.isEmpty()) {
             System.out.println("Stack is empty. Nothing to pop.");
             return null;
-        } else {
-            return stackArray[top--];
         }
+        return stack.remove(stack.size() - 1);
     }
 
     public Dish peek() {
-        if (top < 0) {
+        if (stack.isEmpty()) {
             System.out.println("Stack is empty. Nothing to peek.");
             return null;
-        } else {
-            return stackArray[top];
         }
+        return stack.get(stack.size() - 1);
     }
 
     public int size() {
-        return top + 1;
+        return stack.size();
     }
 
     public void clear() {
-        top = -1;
+        stack.clear();
     }
 }
